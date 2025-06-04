@@ -1,1 +1,15 @@
-<p>main-layout works!</p>
+<!-- main-layout.component.html -->
+<div class="d-flex vh-100">
+  <!-- Sidebar -->
+  <div class="sidebar bg-dark text-white">
+    <app-side-bar></app-side-bar>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 d-flex flex-column">
+    <app-header></app-header>
+    <div class="flex-grow-1 overflow-auto p-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

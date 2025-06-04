@@ -1,0 +1,9 @@
+.d-flex.sidebar-collapsed .content {
+  margin-left: 70px; /* when sidebar collapsed */
+  transition: margin-left 0.3s ease;
+}
+
+.d-flex:not(.sidebar-collapsed) .content {
+  margin-left: 250px; /* when sidebar expanded */
+  transition: margin-left 0.3s ease;
+}
