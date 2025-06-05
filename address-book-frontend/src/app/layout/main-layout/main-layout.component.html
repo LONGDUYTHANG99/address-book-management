@@ -1,15 +1,17 @@
-<!-- main-layout.component.html -->
 <div class="d-flex vh-100">
-  <!-- Sidebar -->
-  <div class="sidebar bg-dark text-white">
+  <!-- Sidebar (fixed width, full height) -->
+  <div class="bg-light border-end p-3" style="flex: 0 0 250px; width: 250px;">
     <app-side-bar></app-side-bar>
   </div>
 
-  <!-- Main Content -->
-  <div class="flex-grow-1 d-flex flex-column">
-    <app-header></app-header>
-    <div class="flex-grow-1 overflow-auto p-3">
+  <!-- Right content area (Header + Main) -->
+  <div class="d-flex flex-column flex-grow-1">
+    <!-- Header (not full screen width, just within right area) -->
+    <app-header class="bg-light border-end" style="height: 60px; flex-shrink: 0;"></app-header>
+
+    <!-- Main content -->
+    <main class="flex-grow-1 p-3 overflow-auto">
       <router-outlet></router-outlet>
-    </div>
+    </main>
   </div>
 </div>

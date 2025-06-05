@@ -10,4 +10,5 @@ import { SideBarComponent } from '../components/side-bar/side-bar.component';
   styleUrl: './main-layout.component.scss'
 })
 export class MainLayoutComponent {
+  
 }

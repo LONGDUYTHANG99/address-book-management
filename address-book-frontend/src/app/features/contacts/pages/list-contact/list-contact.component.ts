@@ -1,14 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FilterBarComponent } from "../../components/filter-bar/filter-bar.component";
+import { Contact } from '../../../../core/models/contact.model';
+import { ContactCardComponent } from '../../components/contact-card/contact-card.component';
 
 @Component({
   selector: 'app-list-contact',
-  imports: [CommonModule, FilterBarComponent],
+  imports: [CommonModule, FilterBarComponent, ContactCardComponent],
   templateUrl: './list-contact.component.html',
   styleUrl: './list-contact.component.scss'
 })
 export class ListContactComponent {
+  //Title
+  contentTitle = signal("Contacts");
+  //Dummy contacts
   contacts = [
     {
       initials: 'JD',
@@ -23,6 +28,23 @@ export class ListContactComponent {
       title: 'Client Service at Pobuca (SAMPLE)',
       email: 'support@pobuca.ca',
       color: '#F5B041'
+    },
+    {
+      initials: 'LS',
+      name: 'Lisa Sanders (SAMPLE)',
+      title: 'Client Service at Pobuca (SAMPLE)',
+      email: 'support@pobuca.ca',
+      color: '#F5B041'
+    },
+    {
+      initials: 'LS',
+      name: 'Lisa Sanders (SAMPLE)',
+      title: 'Client Service at Pobuca (SAMPLE)',
+      email: 'support@pobuca.ca',
+      color: '#F5B041'
     }
   ];
+  //List of contacts
+  contactsList = signal<Array<Contact>>(this.contacts);
+  
 }
