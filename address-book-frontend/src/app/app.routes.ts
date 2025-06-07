@@ -9,8 +9,24 @@ export const routes: Routes = [
         children: [
             {
                 path: 'contacts',
-                loadComponent: () => import('./features/contacts/pages/list-contact/list-contact.component').then((c) => c.ListContactComponent)
+                children: [
+                    {
+                        path: '',
+                        loadComponent: () =>
+                            import('./features/contacts/pages/list-contact/list-contact.component').then(
+                                (c) => c.ListContactComponent
+                            )
+                    },
+                    {
+                        path: 'add',
+                        loadComponent: () =>
+                            import('./features/contacts/pages/add-contact/add-contact.component').then(
+                                (c) => c.AddContactComponent
+                            )
+                    }
+                ]
             }
         ]
     }
+
 ];

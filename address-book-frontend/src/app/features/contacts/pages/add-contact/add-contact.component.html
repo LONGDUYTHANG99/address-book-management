@@ -1,1 +1,149 @@
-<p>add-contact works!</p>
+<div class="container mt-5">
+  <!-- Header (with Image Binding) -->
+  <div class="d-flex align-items-center mb-4">
+    <div class="rounded-circle overflow-hidden bg-light border" style="width: 60px; height: 60px;">
+      <img [src]="contact().image || 'https://via.placeholder.com/60'" alt="contact"
+        class="w-100 h-100 object-fit-cover">
+    </div>
+    <h2 class="ms-3 mb-0">Contact</h2>
+  </div>
+
+
+  <!-- Contact Info Section -->
+  <h5 class="mb-3">Contact Info</h5>
+
+  <form (ngSubmit)="save()" #contactForm="ngForm">
+
+    <!-- Hidden input for image string -->
+    <input type="hidden" name="image" [(ngModel)]="contact().image" />
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="contact().firstName"
+            required placeholder="First name">
+          <label for="firstName">First name</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="contact().lastName"
+            required placeholder="Last name">
+          <label for="lastName">Last name <span class="text-danger">*</span></label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="contact().jobTitle"
+            placeholder="Job Title">
+          <label for="jobTitle">Job Title</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <select class="form-select" id="organization" name="organization" [(ngModel)]="selectedOrganizationId">
+            <option value="" disabled selected>Select organization</option>
+            @for (o of organizations(); track o.id) {
+            <option [value]="o.id">{{ o.name }}</option>
+            }
+          </select>
+          <label for="organization">Organization</label>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="tel" class="form-control" id="personalEmail" name="personalEmail"
+            [(ngModel)]="contact().personalEmail" placeholder="Personal Email">
+          <label for="personalEmail">Personal Email</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="email" class="form-control" id="workEmail" name="workEmail" [(ngModel)]="contact().workEmail"
+            placeholder="Work email">
+          <label for="workEmail">Work email</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="date" class="form-control" id="birthday" name="birthday" [(ngModel)]="contact().birthday"
+            placeholder="Birthday">
+          <label for="birthday">BirthDay</label>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-floating">
+          <select class="form-select" id="gender" name="gender" [(ngModel)]="contact().gender">
+            <option value="" disabled selected>Select gender</option>
+            @for (g of masterMap()['Gender']; track g.id) {
+            <option [value]="g.typeKey">{{ g.typeValue }}</option>
+            }
+          </select>
+          <label for="gender">Gender</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Numbers -->
+    <h5 class="mt-4 mb-2">Phones</h5>
+    <div class="dropdown mb-3">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Add phone type
+      </button>
+      <ul class="dropdown-menu">
+        @for (phoneType of phoneTypes(); track phoneType.id) {
+        <li>
+          <a class="dropdown-item" [class.disabled]="isPhoneTypeAdded(phoneType)"
+            (click)="handlePhoneTypeClick(phoneType)">
+            {{ phoneType.name }}
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+    @if (contact().phones?.length) {
+    <div>
+      <h6 class="mb-3">Added Phones:</h6>
+      <div class="row g-2">
+        @for (phone of contact().phones; track phone.phoneTypeId) {
+        <div class="col-12">
+          <div class="input-group">
+            <span class="input-group-text" style="min-width: 100px;">
+              {{ phone.phoneType?.name }}
+            </span>
+            <input [(ngModel)]="phone.number" name="phone_{{phone.phoneTypeId}}" type="text" class="form-control"
+              placeholder="Enter number">
+            <button type="button" class="btn btn-outline-danger" (click)="removePhoneType(phone.phoneTypeId!)">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-save me-1"></i> Save & Close
+      </button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+          <i class="bi bi-three-dots-vertical"></i> More
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Duplicate</a></li>
+          <li><a class="dropdown-item" href="#">Archive</a></li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>
