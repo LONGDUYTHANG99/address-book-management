@@ -6,8 +6,12 @@ export interface Organization {
     email?: string
     phone?: string;
     website?: string;
+
+    //Master data
     country?: number;
     industry?: number;
     type?: number;
+
+    
     contacts?: Contact[];
 }

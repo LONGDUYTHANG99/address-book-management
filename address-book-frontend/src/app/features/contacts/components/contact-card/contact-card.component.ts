@@ -10,4 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ContactCardComponent {
   contact = input.required<Contact>();
+
+  toggleFavorite(): void {
+    this.contact().isFavourite = !this.contact().isFavourite;
+    // Optionally emit an event or call a service here
+  }
 }

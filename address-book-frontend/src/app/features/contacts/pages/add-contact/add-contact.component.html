@@ -17,6 +17,7 @@
     <!-- Hidden input for image string -->
     <input type="hidden" name="image" [(ngModel)]="contact().image" />
 
+    <!--First Name-->
     <div class="row g-3">
       <div class="col-md-6">
         <div class="form-floating">
@@ -26,6 +27,7 @@
         </div>
       </div>
 
+      <!--Last Name-->
       <div class="col-md-6">
         <div class="form-floating">
           <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="contact().lastName"
@@ -34,6 +36,16 @@
         </div>
       </div>
 
+      <!--Nick Name-->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="nickName" name="nickName" [(ngModel)]="contact().nickName"
+            required placeholder="Nick name">
+          <label for="NickName">Nick name <span class="text-danger">*</span></label>
+        </div>
+      </div>
+
+      <!--Job Title-->
       <div class="col-md-6">
         <div class="form-floating">
           <input type="text" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="contact().jobTitle"
@@ -42,6 +54,7 @@
         </div>
       </div>
 
+      <!--Organization-->
       <div class="col-md-6">
         <div class="form-floating">
           <select class="form-select" id="organization" name="organization" [(ngModel)]="selectedOrganizationId">
@@ -54,15 +67,29 @@
         </div>
       </div>
 
-
+      <!--Department-->
       <div class="col-md-6">
         <div class="form-floating">
-          <input type="tel" class="form-control" id="personalEmail" name="personalEmail"
+          <select class="form-select" id="department" name="department" [(ngModel)]="contact().department">
+            <option value="" disabled selected>Select Department</option>
+            @for (d of masterMap()['Department']; track d.id) {
+              <option [value]="d.typeKey">{{ d.typeValue }}</option>
+            }
+          </select>
+          <label for="department">Department</label>
+        </div>
+      </div>
+
+      <!--Personal Email-->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="email" class="form-control" id="personalEmail" name="personalEmail"
             [(ngModel)]="contact().personalEmail" placeholder="Personal Email">
           <label for="personalEmail">Personal Email</label>
         </div>
       </div>
 
+      <!--Work Email-->
       <div class="col-md-6">
         <div class="form-floating">
           <input type="email" class="form-control" id="workEmail" name="workEmail" [(ngModel)]="contact().workEmail"
@@ -71,6 +98,7 @@
         </div>
       </div>
 
+      <!--BirthDay-->
       <div class="col-md-6">
         <div class="form-floating">
           <input type="date" class="form-control" id="birthday" name="birthday" [(ngModel)]="contact().birthday"
@@ -79,57 +107,70 @@
         </div>
       </div>
 
+      <!--Gender-->
       <div class="col-md-6">
         <div class="form-floating">
           <select class="form-select" id="gender" name="gender" [(ngModel)]="contact().gender">
             <option value="" disabled selected>Select gender</option>
             @for (g of masterMap()['Gender']; track g.id) {
-            <option [value]="g.typeKey">{{ g.typeValue }}</option>
+              <option [value]="g.typeKey">{{ g.typeValue }}</option>
             }
           </select>
           <label for="gender">Gender</label>
         </div>
       </div>
+
+      <!--Group-->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <select class="form-select" id="group" name="group" [(ngModel)]="contact().group">
+            <option value="" disabled selected>Select group</option>
+            @for (g of masterMap()['Group']; track g.id) {
+              <option [value]="g.typeKey">{{ g.typeValue }}</option>
+            }
+          </select>
+          <label for="group">Group</label>
+        </div>
+      </div>
+
+      <!--Relationship-->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <select class="form-select" id="relationship" name="relationship" [(ngModel)]="contact().relationship">
+            <option value="" disabled selected>Select relationship</option>
+            @for (r of masterMap()['Relationship']; track r.id) {
+              <option [value]="r.typeKey">{{ r.typeValue }}</option>
+            }
+          </select>
+          <label for="relationship">Relationship</label>
+        </div>
+      </div>
+
+      <!--Home Addrress-->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="homeAddress" name="homeAddress" [(ngModel)]="contact().homeAdress"
+            placeholder="Home Address">
+          <label for="homeAddress">Home Address</label>
+        </div>
+      </div>
+
+      <!--Work Arress-->
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="workAddress" name="workAddress" [(ngModel)]="contact().workAdress"
+            placeholder="Work Address">
+          <label for="workAddress">Work Address</label>
+        </div>
+      </div>
+      
     </div>
 
-    <!-- Phone Numbers -->
-    <h5 class="mt-4 mb-2">Phones</h5>
-    <div class="dropdown mb-3">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        Add phone type
-      </button>
-      <ul class="dropdown-menu">
-        @for (phoneType of phoneTypes(); track phoneType.id) {
-        <li>
-          <a class="dropdown-item" [class.disabled]="isPhoneTypeAdded(phoneType)"
-            (click)="handlePhoneTypeClick(phoneType)">
-            {{ phoneType.name }}
-          </a>
-        </li>
-        }
-      </ul>
-    </div>
-    @if (contact().phones?.length) {
-    <div>
-      <h6 class="mb-3">Added Phones:</h6>
-      <div class="row g-2">
-        @for (phone of contact().phones; track phone.phoneTypeId) {
-        <div class="col-12">
-          <div class="input-group">
-            <span class="input-group-text" style="min-width: 100px;">
-              {{ phone.phoneType?.name }}
-            </span>
-            <input [(ngModel)]="phone.number" name="phone_{{phone.phoneTypeId}}" type="text" class="form-control"
-              placeholder="Enter number">
-            <button type="button" class="btn btn-outline-danger" (click)="removePhoneType(phone.phoneTypeId!)">
-              <i class="bi bi-x"></i>
-            </button>
-          </div>
-        </div>
-        }
-      </div>
-    </div>
-    }
+    <!-- Phone Numbers Section -->
+    <app-phone-section [readonlyPhoneTypes]="phoneTypes()" [readonlyContact]="contact()"></app-phone-section>
+
+    <!-- Websites Section -->
+    <app-website-section [readonlyWebsiteTypes]="websiteTypes()" [readonlyContact]="contact()"></app-website-section>
     <!-- Action Buttons -->
     <div class="d-flex justify-content-end gap-2 mt-4">
       <button type="submit" class="btn btn-primary">

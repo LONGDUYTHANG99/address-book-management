@@ -1,0 +1,38 @@
+
+<h5 class="mt-4 mb-2">Websites</h5>
+<div class="dropdown mb-3">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Add Website type
+    </button>
+    <ul class="dropdown-menu">
+        @for (websiteType of websiteTypes(); track websiteType.id) {
+        <li>
+            <a class="dropdown-item" [class.disabled]="isWebsiteAdded(websiteType)"
+                (click)="handleWebsiteTypeClick(websiteType)">
+                {{ websiteType.name }}
+            </a>
+        </li>
+        }
+    </ul>
+</div>
+@if (contact().websites?.length) {
+<div>
+    <h6 class="mb-3">Added Websites:</h6>
+    <div class="row g-2">
+        @for (website of contact().websites; track website.websiteTypeId) {
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-text" style="min-width: 100px;">
+                    {{ website.websiteType?.name }}
+                </span>
+                <input [(ngModel)]="website.url" name="Website_{{website.websiteTypeId}}" type="text" class="form-control"
+                    placeholder="Enter url">
+                <button type="button" class="btn btn-outline-danger" (click)="removeWebsite(website.websiteTypeId!)">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+}

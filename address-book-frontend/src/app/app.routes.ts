@@ -23,6 +23,13 @@ export const routes: Routes = [
                             import('./features/contacts/pages/add-contact/add-contact.component').then(
                                 (c) => c.AddContactComponent
                             )
+                    },
+                    {
+                        path: ':id',
+                        loadComponent: () =>
+                            import('./features/contacts/pages/detail-contact/detail-contact.component').then(
+                                (c) => c.DetailContactComponent
+                            )
                     }
                 ]
             }

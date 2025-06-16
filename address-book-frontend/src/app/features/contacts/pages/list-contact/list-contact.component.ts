@@ -13,39 +13,131 @@ import { ToolBarComponent } from '../../components/tool-bar/tool-bar.component';
 })
 export class ListContactComponent {
   //Title
-  //contentTitle = signal("Contacts");
+  contentTitle = signal("Contacts");
   //Dummy contacts
-  // contacts = [
-  //   {
-  //     initials: 'JD',
-  //     name: 'John Davis (SAMPLE)',
-  //     title: 'Cloud Sales Consultant at Pobuca (SAMPLE)',
-  //     email: 'sales@pobuca.ca',
-  //     color: '#2E86C1'
-  //   },
-  //   {
-  //     initials: 'LS',
-  //     name: 'Lisa Sanders (SAMPLE)',
-  //     title: 'Client Service at Pobuca (SAMPLE)',
-  //     email: 'support@pobuca.ca',
-  //     color: '#F5B041'
-  //   },
-  //   {
-  //     initials: 'LS',
-  //     name: 'Lisa Sanders (SAMPLE)',
-  //     title: 'Client Service at Pobuca (SAMPLE)',
-  //     email: 'support@pobuca.ca',
-  //     color: '#F5B041'
-  //   },
-  //   {
-  //     initials: 'LS',
-  //     name: 'Lisa Sanders (SAMPLE)',
-  //     title: 'Client Service at Pobuca (SAMPLE)',
-  //     email: 'support@pobuca.ca',
-  //     color: '#F5B041'
-  //   }
-  // ];
+  contacts = [
+    {
+      id: 1,
+      image: 'https://randomuser.me/api/portraits/men/75.jpg',
+      firstName: 'Alice',
+      lastName: 'Johnson',
+      nickName: 'AJ',
+      jobTitle: 'Software Engineer',
+      personalEmail: 'alice.johnson@gmail.com',
+      workEmail: 'alice.johnson@openai.com',
+      birthday: '1990-05-15',
+      gender: 2,
+      group: 2,
+      relationship: 2,
+      organizationId: 2,
+      department: 3,
+      workAdress: 'Hoa Lac, Thach That, Ha Noi',
+      homeAdress: 'Cao Bang, Viet Nam',
+      phones: [
+        {
+          phoneTypeId: 1,
+          phoneType: { id: 1, name: 'Mobile' },
+          number: '0123456789',
+        },
+        {
+          phoneTypeId: 2,
+          phoneType: { id: 2, name: 'Work' },
+          number: '0123456789',
+        }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://randomuser.me/api/portraits/men/75.jpg',
+      firstName: 'Alice',
+      lastName: 'Johnson',
+      nickName: 'AJ',
+      jobTitle: 'Software Engineer',
+      personalEmail: 'alice.johnson@gmail.com',
+      workEmail: 'alice.johnson@openai.com',
+      birthday: '1990-05-15',
+      gender: 2,
+      group: 2,
+      relationship: 2,
+      organizationId: 2,
+      department: 3,
+      workAdress: 'Hoa Lac, Thach That, Ha Noi',
+      homeAdress: 'Cao Bang, Viet Nam',
+      phones: [
+        {
+          phoneTypeId: 1,
+          phoneType: { id: 1, name: 'Mobile' },
+          number: '0123456789',
+        },
+        {
+          phoneTypeId: 2,
+          phoneType: { id: 2, name: 'Work' },
+          number: '0123456789',
+        }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://randomuser.me/api/portraits/men/75.jpg',
+      firstName: 'Alice',
+      lastName: 'Johnson',
+      nickName: 'AJ',
+      jobTitle: 'Software Engineer',
+      personalEmail: 'alice.johnson@gmail.com',
+      workEmail: 'alice.johnson@openai.com',
+      birthday: '1990-05-15',
+      gender: 2,
+      group: 2,
+      relationship: 2,
+      organizationId: 2,
+      department: 3,
+      workAdress: 'Hoa Lac, Thach That, Ha Noi',
+      homeAdress: 'Cao Bang, Viet Nam',
+      phones: [
+        {
+          phoneTypeId: 1,
+          phoneType: { id: 1, name: 'Mobile' },
+          number: '0123456789',
+        },
+        {
+          phoneTypeId: 2,
+          phoneType: { id: 2, name: 'Work' },
+          number: '0123456789',
+        }
+      ]
+    },
+    {
+      id: 1,
+      image: 'https://randomuser.me/api/portraits/men/75.jpg',
+      firstName: 'Alice',
+      lastName: 'Johnson',
+      nickName: 'AJ',
+      jobTitle: 'Software Engineer',
+      personalEmail: 'alice.johnson@gmail.com',
+      workEmail: 'alice.johnson@openai.com',
+      birthday: '1990-05-15',
+      gender: 2,
+      group: 2,
+      relationship: 2,
+      organizationId: 2,
+      department: 3,
+      workAdress: 'Hoa Lac, Thach That, Ha Noi',
+      homeAdress: 'Cao Bang, Viet Nam',
+      phones: [
+        {
+          phoneTypeId: 1,
+          phoneType: { id: 1, name: 'Mobile' },
+          number: '0123456789',
+        },
+        {
+          phoneTypeId: 2,
+          phoneType: { id: 2, name: 'Work' },
+          number: '0123456789',
+        }
+      ]
+    },
+  ];
   //List of contacts
-  //contactsList = signal<Array<Contact>>(this.contacts);
-  
+  contactsList = signal<Array<Contact>>(this.contacts);
+
 }

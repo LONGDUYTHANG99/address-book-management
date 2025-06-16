@@ -1,0 +1,46 @@
+<div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+  <!-- Left: Avatar and Info -->
+  <div class="d-flex align-items-center">
+    <div class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center me-3"
+         style="width: 60px; height: 60px; font-size: 1.5rem;">
+      JD
+    </div>
+    <div>
+      <h5 class="mb-0">John Davis (SAMPLE) <i class="bi bi-heart-fill text-danger"></i></h5>
+      <small class="text-muted">Cloud Sales Consultant at Pobuca (SAMPLE)</small>
+    </div>
+  </div>
+
+  <!-- Right: Action Buttons -->
+  <div>
+    <button class="btn btn-outline-secondary me-2">
+      <i class="bi bi-geo-alt-fill"></i>
+    </button>
+    <button class="btn btn-outline-secondary me-2">
+      <i class="bi bi-envelope-fill"></i>
+    </button>
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+        Actions
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">Edit</a></li>
+        <li><a class="dropdown-item" href="#">Delete</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <app-contact-details></app-contact-details>
+    </div>
+    <div class="col-md-5">
+      <app-activity-panel></app-activity-panel>
+    </div>
+    <div class="col-md-3">
+      <app-more-info-panel></app-more-info-panel>
+    </div>
+  </div>
+</div>

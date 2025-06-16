@@ -2,14 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Contact } from '../../../../core/models/contact.model';
-import { Phone } from '../../../../core/models/phone.model';
 import { PhoneType } from '../../../../core/models/phone-type.model';
 import { Organization } from '../../../../core/models/organization.model';
 import { Master } from '../../../../core/models/master.model';
+import { PhoneSectionComponent } from "../../components/phone-section/phone-section.component";
+import { WebsiteSectionComponent } from "../../components/website-section/website-section.component";
+import { WebsiteType } from '../../../../core/models/website-type.model';
 
 @Component({
   selector: 'app-add-contact',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, PhoneSectionComponent, WebsiteSectionComponent],
   templateUrl: './add-contact.component.html',
   styleUrl: './add-contact.component.scss'
 })
@@ -25,24 +27,58 @@ export class AddContactComponent {
       name: 'Work',
     }
   ];
+  websiteTypesDummy: WebsiteType[] = [
+    {
+      id: 1,
+      name: 'Facebook'
+    },
+    {
+      id: 2,
+      name: 'Instagram'
+    },
+    {
+      id: 3,
+      name: 'Linkedin'
+    },
+    {
+      id: 4,
+      name: 'Twitter'
+    }
+  ]
 
   contactDummy: Contact = {
     id: 1,
     image: 'https://randomuser.me/api/portraits/men/75.jpg',
     firstName: 'Alice',
     lastName: 'Johnson',
+    nickName: 'AJ',
     jobTitle: 'Software Engineer',
     personalEmail: 'alice.johnson@gmail.com',
     workEmail: 'alice.johnson@openai.com',
     birthday: '1990-05-15',
     gender: 2,
+    group: 2,
+    relationship: 2,
     organizationId: 2,
+    department: 3,
+    workAdress: 'Hoa Lac, Thach That, Ha Noi',
+    homeAdress: 'Cao Bang, Viet Nam',
     phones: [
       {
         phoneTypeId: 1,
         phoneType: { id: 1, name: 'Mobile' },
         number: '0123456789',
-        contactId: 1
+      },
+      {
+        phoneTypeId: 2,
+        phoneType: { id: 2, name: 'Work' },
+        number: '0123456789',
+      }
+    ],
+    websites: [
+      {
+        websiteTypeId: 2,
+        websiteType: {id: 2, name: 'Instagram'}
       }
     ]
   };
@@ -57,8 +93,17 @@ export class AddContactComponent {
   masterDummy: Master[] = [
     { id: 1, typeName: 'Gender', typeKey: 1, typeValue: 'Male' },
     { id: 2, typeName: 'Gender', typeKey: 2, typeValue: 'Female' },
-    { id: 3, typeName: 'Industry', typeKey: 1, typeValue: 'Tech' },
-    { id: 4, typeName: 'Industry', typeKey: 2, typeValue: 'Finance' }
+    { id: 3, typeName: 'Relationship', typeKey: 1, typeValue: 'Mother' },
+    { id: 4, typeName: 'Relationship', typeKey: 2, typeValue: 'Wife' },
+    { id: 5, typeName: 'Relationship', typeKey: 3, typeValue: 'Husband' },
+    { id: 6, typeName: 'Relationship', typeKey: 4, typeValue: 'Father' },
+    { id: 7, typeName: 'Department', typeKey: 1, typeValue: 'Information Technology' },
+    { id: 8, typeName: 'Department', typeKey: 2, typeValue: 'Marketing' },
+    { id: 9, typeName: 'Department', typeKey: 3, typeValue: 'Multimedia Communication' },
+    { id: 10, typeName: 'Group', typeKey: 1, typeValue: 'Close Friends' },
+    { id: 11, typeName: 'Group', typeKey: 2, typeValue: 'Co-Workers' },
+    { id: 12, typeName: 'Group', typeKey: 3, typeValue: 'Emmergency' },
+    { id: 13, typeName: 'Group', typeKey: 4, typeValue: 'Family' }
   ];
 
   masterMapDummy: { [key: string]: Master[] } = {};
@@ -69,13 +114,14 @@ export class AddContactComponent {
 
   selectedOrganizationId = this.contactDummy.organizationId;
 
-  //Send data to view
+  //Send data to view using signal
   phoneTypes = signal(this.phoneTypesDummy);
+  websiteTypes = signal(this.websiteTypesDummy);
   contact = signal(this.contactDummy);
   organizations = signal(this.organizationsDummy);
   masterMap = signal(this.masterMapDummy);
 
-
+  //Seperate master data group
   groupMasters() {
     const grouped = this.masterDummy.reduce((acc, item) => {
       const typeName = item.typeName ?? '';
@@ -89,44 +135,8 @@ export class AddContactComponent {
     this.masterMap.set(grouped); // ✅ update the signal's value
   }
 
-  addPhoneType(phoneType: PhoneType) {
-    const current = this.contact();
-    const phones = current.phones ?? [];
 
-    const newPhone: Phone = {
-      phoneTypeId: phoneType.id,
-      phoneType: phoneType,
-      number: '', // You can let the user enter this later
-      contactId: current.id
-    };
-
-    // Add the new phone to the list
-    const updatedContact: Contact = {
-      ...current,
-      phones: [...phones, newPhone]
-    };
-
-    this.contact.set(updatedContact);
-    console.log(this.contact());
-  }
-
-  isPhoneTypeAdded(phoneType: PhoneType): boolean {
-    return this.contact().phones?.some(p => p.phoneTypeId === phoneType.id) ?? false;
-  }
-
-  handlePhoneTypeClick(phoneType: PhoneType) {
-    if (!this.isPhoneTypeAdded(phoneType)) {
-      this.addPhoneType(phoneType);
-    }
-  }
-  removePhoneType(phoneTypeId: number) {
-    const updatedPhones = (this.contact().phones ?? []).filter(p => p.phoneTypeId !== phoneTypeId);
-    this.contact.set({
-      ...this.contact(),
-      phones: updatedPhones
-    });
-  }
-
+  //Save the form information
   save() {
     console.log(this.contact);
     // Proceed with form submit logic
