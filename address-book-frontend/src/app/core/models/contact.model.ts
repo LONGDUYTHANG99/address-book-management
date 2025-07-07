@@ -14,7 +14,7 @@ export interface Contact extends Common{
   jobTitle?: string;
   personalEmail?: string;
   workEmail?: string;
-  birthday?: string;
+  birthday?: Date;
   homeAdress?: string;
   workAdress?: string
   

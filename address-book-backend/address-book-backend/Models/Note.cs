@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace address_book_backend.Models
+{
+    [Table("Notes")]
+    public class Note
+    {
+        [Key]
+        public int Id { get; set; }
+        public string? Title { get; set; }
+        public string? Content { get; set; }
+        
+        //Navigation properties
+        public int? ContactId { get; set; }
+        public Contact? Contact { get; set; }
+    }
+}

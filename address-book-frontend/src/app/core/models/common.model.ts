@@ -1,8 +1,8 @@
 export interface Common {
     deleteFlag?: boolean,
-    createdId?: number,
+    createdBy?: number,
     createdAt?: Date,
-    updatedId?: number,
+    updatedBy?: number,
     updatedAt?: Date,
     recordVersion?: number,
 }

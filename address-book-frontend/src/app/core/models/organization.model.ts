@@ -12,6 +12,6 @@ export interface Organization {
     industry?: number;
     type?: number;
 
-    
+    //Navigation properties
     contacts?: Contact[];
 }

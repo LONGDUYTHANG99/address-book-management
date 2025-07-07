@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>address_book_backend</RootNamespace>
+    <UserSecretsId>c5588ec1-cef2-4763-be8d-20e73c84f0ac</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,11 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Commons\Loggings\" />
+    <Folder Include="Commons\Constants\" />
     <Folder Include="DTOs\" />
-    <Folder Include="Commons\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
+    <Folder Include="Configs\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Repositories\Implements\" />
+    <Folder Include="Services\Implements\" />
   </ItemGroup>
 
 </Project>

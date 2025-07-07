@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c5588ec1-cef2-4763-be8d-20e73c84f0ac")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("address-book-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c41cfd4d9442bf777cdb0f178b0fb879548ec12")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45ee92d4bcf55c9c8a503b0f8e7d94abd9f09a24")]
 [assembly: System.Reflection.AssemblyProductAttribute("address-book-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("address-book-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
